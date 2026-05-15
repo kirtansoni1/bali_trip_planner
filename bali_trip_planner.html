@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>🌴 Bali 2026</title>
+<style>
+:root{
+  --t:#1D9E75;--td:#0F6E56;--tdd:#04342C;--tl:#E1F5EE;--tm:#9FE1CB;
+  --al:#FAEEDA;--ad:#854F0B;--cl:#FAECE7;--cd:#993C1D;
+  --bg:#f9f9f7;--card:#fff;--br:#e4e4e0;--tx:#1a1a18;--tx2:#6b6b66;--tx3:#9e9e98;--red:#D85A30
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{width:100%;min-height:100%;overflow-x:hidden;background:var(--bg);
+  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  font-size:15px;color:var(--tx);-webkit-text-size-adjust:100%;text-size-adjust:100%}
+.wrap{max-width:480px;margin:0 auto}
+.hero{background:var(--tl);padding:16px;margin:12px 12px 0;border-radius:14px}
+.hero-title{font-size:22px;font-weight:700;color:var(--tdd)}
+.hero-sub{font-size:13px;color:var(--td);margin-top:3px}
+.pills{display:-webkit-flex;display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.pill{font-size:11px;font-weight:600;padding:3px 10px;border-radius:99px;background:var(--tm);color:var(--tdd)}
+.pill.a{background:#FAC775;color:#412402}
+.tabs{position:sticky;top:0;z-index:99;display:-webkit-flex;display:flex;
+  background:var(--card);border-bottom:1px solid var(--br);
+  overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{-webkit-flex-shrink:0;flex-shrink:0;padding:11px 13px 10px;border:none;background:transparent;
+  cursor:pointer;font-size:12px;font-family:inherit;color:var(--tx2);font-weight:600;
+  border-bottom:2px solid transparent;white-space:nowrap;-webkit-appearance:none;touch-action:manipulation}
+.tab.on{color:var(--td);border-bottom-color:var(--t)}
+.pg{display:none;padding:0 12px 90px}
+.pg.on{display:block}
+.sec{display:-webkit-flex;display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;
+  color:var(--td);text-transform:uppercase;letter-spacing:.07em;margin:16px 0 8px}
+.sec-bar{width:3px;height:13px;background:var(--t);border-radius:2px;-webkit-flex-shrink:0;flex-shrink:0}
+.card{background:var(--card);border:1px solid var(--br);border-radius:14px;padding:14px 16px;margin-bottom:8px}
+.div{border-top:1px solid var(--br);margin:10px 0}
+.row{display:-webkit-flex;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;padding:4px 0}
+.rl{font-size:13px;color:var(--tx2);-webkit-flex-shrink:0;flex-shrink:0;padding-top:1px}
+.rv{font-size:13px;font-weight:600;color:var(--tx);text-align:right;
+  display:-webkit-flex;display:flex;align-items:center;flex-wrap:wrap;gap:5px;justify-content:flex-end}
+.sublbl{font-size:11px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+.cp{display:-webkit-inline-flex;display:inline-flex;align-items:center;gap:3px;
+  padding:5px 10px;border:1px solid var(--br);border-radius:8px;background:var(--bg);
+  cursor:pointer;font-size:11px;font-weight:600;color:var(--tx2);font-family:inherit;
+  -webkit-appearance:none;appearance:none;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.cp:active{background:#e8f5f0;border-color:var(--t)}
+.bdone{font-size:11px;padding:2px 9px;border-radius:99px;background:#d4f0e0;color:#1a6b42;font-weight:700}
+.btodo{font-size:11px;padding:2px 9px;border-radius:99px;background:var(--al);color:var(--ad);font-weight:700}
+.card-h{display:-webkit-flex;display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.ico{width:36px;height:36px;border-radius:10px;display:-webkit-flex;display:flex;align-items:center;justify-content:center;-webkit-flex-shrink:0;flex-shrink:0;font-size:18px}
+.ico.t{background:var(--tl)}.ico.a{background:var(--al)}
+.ct{font-size:14px;font-weight:700;color:var(--tx)}
+.cs{font-size:12px;color:var(--tx2);margin-top:1px}
+.doc-row{display:-webkit-flex;display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--br)}
+.doc-row:last-child{border-bottom:none}
+.doc-ic{font-size:18px;-webkit-flex-shrink:0;flex-shrink:0}
+.doc-txt{font-size:13px;color:var(--tx)}
+.pwd-row{display:-webkit-flex;display:flex;align-items:center;gap:6px}
+.pwd-val{font-size:13px;font-weight:600;color:var(--tx);font-family:'Courier New',monospace;letter-spacing:.05em}
+.eye{background:none;border:none;cursor:pointer;font-size:18px;padding:2px;line-height:1;-webkit-appearance:none;touch-action:manipulation}
+.day-scroll{display:-webkit-flex;display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px;margin-top:12px}
+.day-scroll::-webkit-scrollbar{display:none}
+.dbtn{-webkit-flex-shrink:0;flex-shrink:0;padding:6px 13px;border-radius:99px;border:1px solid var(--br);
+  background:var(--card);cursor:pointer;font-size:12px;font-family:inherit;color:var(--tx2);
+  font-weight:600;white-space:nowrap;-webkit-appearance:none;touch-action:manipulation}
+.dbtn.on{background:var(--t);color:#fff;border-color:var(--t)}
+.tl{padding-left:24px;position:relative;margin-top:12px}
+.tli{position:relative;padding-bottom:16px}
+.tli:last-child{padding-bottom:0}
+.tl-vl{position:absolute;left:-17px;top:14px;bottom:0;width:1px;background:var(--br)}
+.tli:last-child .tl-vl{display:none}
+.tl-dot{position:absolute;left:-21px;top:3px;width:8px;height:8px;border-radius:50%;background:var(--t);border:2px solid var(--bg)}
+.tl-dot.r{background:var(--red)}
+.tl-dot.u{background:var(--amber)}
+.tl-t{font-size:11px;font-weight:700;color:var(--td);letter-spacing:.03em;margin-bottom:2px}
+.tl-main{font-size:14px;color:var(--tx);line-height:1.5;font-weight:500}
+.tl-note{font-size:12px;color:var(--tx2);margin-top:3px;line-height:1.45}
+.imp-tag{font-size:10px;padding:1px 7px;border-radius:99px;background:var(--cl);color:var(--cd);font-weight:700;margin-left:5px;display:inline-block;vertical-align:middle}
+.lug-box{background:var(--tl);border-radius:10px;padding:10px 12px;margin-top:8px}
+.lug-title{font-size:11px;font-weight:700;color:var(--tdd);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.lug-items{font-size:12px;color:var(--td);line-height:1.7}
+.dcost{background:var(--card);border:1px solid var(--br);border-radius:14px;padding:14px 16px;margin-bottom:8px;position:relative}
+.cst-row{display:-webkit-flex;display:flex;justify-content:space-between;align-items:flex-start;padding:7px 0;border-bottom:1px solid var(--br)}
+.cst-row:last-child{border-bottom:none}
+.clbl{font-size:13px;color:var(--tx2);max-width:58%;line-height:1.4}
+.cvals{text-align:right}
+.cinr{font-size:13px;font-weight:700;color:var(--tx)}
+.cinr.tbd{color:var(--tx3);font-style:italic;font-weight:400}
+.cidr{font-size:11px;color:var(--tx3);margin-top:1px}
+.ctotal{display:-webkit-flex;display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding-top:8px;border-top:1px solid var(--br)}
+.ctotal-lbl{font-size:13px;font-weight:700;color:var(--tx)}
+.ctotal-val{font-size:14px;font-weight:700;color:var(--td)}
+.ctotal-idr{font-size:11px;color:var(--tx3);text-align:right;margin-top:2px}
+.prog-meta{display:-webkit-flex;display:flex;justify-content:space-between;font-size:12px;color:var(--tx2);margin:8px 0 6px}
+.prog-track{background:#eef0eb;border-radius:99px;height:7px}
+.prog-fill{height:7px;border-radius:99px;background:var(--t);-webkit-transition:width .3s;transition:width .3s}
+.tcat{display:-webkit-flex;display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--td);text-transform:uppercase;letter-spacing:.07em;margin:14px 0 6px}
+.tcat::before{content:'';width:3px;height:10px;background:var(--tm);border-radius:2px;display:inline-block;-webkit-flex-shrink:0;flex-shrink:0}
+.todo-i{display:-webkit-flex;display:flex;align-items:flex-start;gap:12px;padding:9px 0;border-bottom:1px solid var(--br);cursor:pointer;touch-action:manipulation}
+.todo-i:last-child{border-bottom:none}
+.chk{width:22px;height:22px;min-width:22px;border-radius:7px;border:2px solid var(--br);-webkit-flex-shrink:0;flex-shrink:0;display:-webkit-flex;display:flex;align-items:center;justify-content:center;-webkit-transition:all .15s;transition:all .15s;margin-top:1px;font-size:13px}
+.chk.on{background:var(--t);border-color:var(--t);color:#fff}
+.tt{font-size:14px;color:var(--tx);line-height:1.4;font-weight:500}
+.tt.dn{text-decoration:line-through;color:var(--tx3)}
+.td-sub{font-size:12px;color:var(--tx2);margin-top:2px;line-height:1.4}
+.med-row{display:-webkit-flex;display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--br);cursor:pointer;touch-action:manipulation}
+.med-row:last-child{border-bottom:none}
+.med-row.packed{background:transparent}
+.med-name{font-size:14px;font-weight:700;color:var(--tx)}
+.med-use{font-size:12px;color:var(--tx2);margin-top:2px;line-height:1.4}
+.med-right{display:-webkit-flex;display:flex;align-items:center;gap:6px;-webkit-flex-shrink:0;flex-shrink:0;margin-left:auto}
+.med-qty{font-size:12px;font-weight:600;color:var(--td);background:var(--tl);padding:3px 8px;border-radius:6px;white-space:nowrap}
+.del-btn{background:none;border:none;font-size:18px;cursor:pointer;color:var(--tx3);padding:2px 4px;-webkit-appearance:none;touch-action:manipulation}
+.fab{position:fixed;bottom:calc(24px + env(safe-area-inset-bottom));right:20px;
+  width:52px;height:52px;border-radius:50%;background:var(--t);color:#fff;border:none;
+  font-size:26px;padding:0;line-height:52px;text-align:center;
+  display:-webkit-flex;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;box-shadow:0 4px 16px rgba(29,158,117,.4);z-index:200;
+  -webkit-appearance:none;touch-action:manipulation;font-family:inherit}
+.add-cbtn{display:block;width:100%;margin-top:10px;padding:8px;border:1.5px dashed var(--tm);
+  border-radius:10px;background:transparent;font-size:13px;font-weight:600;color:var(--td);
+  font-family:inherit;cursor:pointer;-webkit-appearance:none;touch-action:manipulation;text-align:center}
+.modal-bg{display:none;position:fixed;top:0;left:0;right:0;bottom:0;
+  background:rgba(0,0,0,.5);z-index:300;-webkit-align-items:flex-end;align-items:flex-end}
+.modal-bg.on{display:-webkit-flex;display:flex}
+.modal{background:var(--card);border-radius:20px 20px 0 0;
+  padding:20px 20px calc(20px + env(safe-area-inset-bottom));
+  width:100%;max-height:85vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.modal-title{font-size:16px;font-weight:700;color:var(--tx);margin-bottom:16px}
+.minput{display:block;width:100%;border:1px solid var(--br);border-radius:10px;
+  padding:11px 13px;font-size:16px;font-family:inherit;color:var(--tx);background:var(--bg);
+  margin-bottom:10px;-webkit-appearance:none;appearance:none;outline:none}
+.minput:focus{border-color:var(--t)}
+.mbtn{display:block;width:100%;background:var(--t);color:#fff;border:none;border-radius:10px;
+  padding:13px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;
+  touch-action:manipulation;-webkit-appearance:none}
+.mcancel{display:block;background:none;border:none;font-size:13px;color:var(--tx2);
+  font-family:inherit;cursor:pointer;width:100%;text-align:center;margin-top:12px;padding:6px;touch-action:manipulation}
+.info-box{background:var(--tl);border:1px solid var(--tm);border-radius:12px;padding:12px 14px;margin-bottom:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div class="hero-title">🌴 Bali Trip 2026</div>
+    <div class="hero-sub">Ahmedabad → Bali &nbsp;·&nbsp; 25 May – 3 June &nbsp;·&nbsp; 8D 7N</div>
+    <div class="pills">
+      <span class="pill">👨‍👩‍👧‍👦 7 People</span>
+      <span class="pill a">🏝️ 2 Villas</span>
+      <span class="pill">✈️ Singapore Airlines</span>
+      <span class="pill a">🤿 Nusa Penida</span>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" onclick="goTab('ov',this)">Overview</button>
+    <button class="tab" onclick="goTab('it',this)">Itinerary</button>
+    <button class="tab" onclick="goTab('co',this)">Costs</button>
+    <button class="tab" onclick="goTab('td',this)">Checklist</button>
+    <button class="tab" onclick="goTab('med',this)">Medkit 💊</button>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="pg on" id="pg-ov">
+    <div class="sec"><span class="sec-bar"></span>Flight Details</div>
+    <div class="card">
+      <div class="row"><span class="rl">Airline</span><span class="rv">Singapore Airlines SQ505</span></div>
+      <div class="row"><span class="rl">PNR</span><span class="rv">DUK69D &nbsp;<button class="cp" onclick="cp('DUK69D',this)">📋 Copy</button></span></div>
+      <div class="row"><span class="rl">Booking No.</span><span class="rv" style="font-size:12px">BIN-32630488 &nbsp;<button class="cp" onclick="cp('BIN-32630488',this)">📋 Copy</button></span></div>
+      <div class="row"><span class="rl">Baggage</span><span class="rv">7 kg cabin + 30 kg checked</span></div>
+      <div class="div"></div>
+      <div class="sublbl">Leg 1 &nbsp;·&nbsp; AMD → SIN</div>
+      <div class="row"><span class="rl">Departure</span><span class="rv">25 May, 22:50 (AMD)</span></div>
+      <div class="row"><span class="rl">Arrival</span><span class="rv">26 May, 07:10 (SIN)</span></div>
+      <div class="div"></div>
+      <div class="sublbl">Layover &nbsp;·&nbsp; Singapore Changi (SIN)</div>
+      <div class="row"><span class="rl">Duration</span><span class="rv">10 hrs 35 mins</span></div>
+      <div class="div"></div>
+      <div class="sublbl">Leg 2 &nbsp;·&nbsp; SIN → DPS</div>
+      <div class="row"><span class="rl">Departure</span><span class="rv">26 May, 17:45 (SIN)</span></div>
+      <div class="row"><span class="rl">Arrival</span><span class="rv">26 May, 20:25 (DPS)</span></div>
+    </div>
+
+    <div class="sec"><span class="sec-bar"></span>Villa 1 · 26–29 May</div>
+    <div class="card">
+      <div class="card-h"><div class="ico t">🏡</div><div><div class="ct">Villa Uma Pertiwi by Nakula</div><div class="cs">Kerobokan Kelod, Kec. Kuta Utara, Badung</div></div></div>
+      <div class="div"></div>
+      <div class="row"><span class="rl">Check-in</span><span class="rv">26 May, after 3:00 PM</span></div>
+      <div class="row"><span class="rl">Check-out</span><span class="rv">29 May, before 12:00 PM</span></div>
+      <div class="row"><span class="rl">Rooms</span><span class="rv">4 rooms · 5 bathrooms</span></div>
+      <div class="row"><span class="rl">Address</span><span class="rv"><button class="cp" onclick="cp('859C+787, Jl. Dewi Saraswati III, Kerobokan Kelod, Kec. Kuta Utara, Kabupaten Badung, Bali 80361, Indonesia',this)">📋 Copy Address</button></span></div>
+    </div>
+
+    <div class="sec"><span class="sec-bar"></span>Villa 2 · 29 May – 3 Jun</div>
+    <div class="card">
+      <div class="card-h"><div class="ico a">🏡</div><div><div class="ct">Villa Tereva</div><div class="cs">Singapadu Kaler, Kec. Sukawati, Gianyar</div></div></div>
+      <div class="div"></div>
+      <div class="row"><span class="rl">Check-in</span><span class="rv">29 May, after 3:00 PM</span></div>
+      <div class="row"><span class="rl">Check-out</span><span class="rv">3 Jun, before 11:00 AM</span></div>
+      <div class="row"><span class="rl">Rooms</span><span class="rv">4 rooms · 4 bathrooms</span></div>
+      <div class="row"><span class="rl">Contact</span><span class="rv">Kd Pramesta Dananjaya &nbsp;<button class="cp" onclick="cp('+628977324702',this)">📋 +628977324702</button></span></div>
+      <div class="row"><span class="rl">Address</span><span class="rv"><button class="cp" onclick="cp('F63R+W2M, Jl. Raya Tunon, Singapadu Kaler, Kec. Sukawati, Kabupaten Gianyar, Bali 80352, Indonesia',this)">📋 Copy Address</button></span></div>
+    </div>
+
+    <div class="sec"><span class="sec-bar"></span>E-Visa &amp; Entry</div>
+    <div class="card">
+      <div class="row">
+        <span class="rl">Account details</span>
+        <span class="rv">
+          <span class="bdone">✓ Stored Securely</span>
+        </span>
+      </div>
+      <div class="div"></div>
+      <div class="sublbl">Carry at Immigration</div>
+      <div class="doc-row"><span class="doc-ic">🛂</span><span class="doc-txt">Passport (valid 6+ months)</span></div>
+      <div class="doc-row"><span class="doc-ic">🎫</span><span class="doc-txt">Outbound ticket from Indonesia</span></div>
+      <div class="doc-row"><span class="doc-ic">🧾</span><span class="doc-txt">Bali Tourist Levy receipt</span></div>
+      <div class="doc-row"><span class="doc-ic">📱</span><span class="doc-txt">Bali Arrival Card QR Code</span></div>
+      <div class="div"></div>
+      <div class="row"><span class="rl" style="font-size:12px">E-Visa portal</span><span class="rv"><a href="https://evisa.imigrasi.go.id/" target="_blank" style="font-size:12px;color:var(--td);font-weight:600;text-decoration:none">🔗 evisa.imigrasi.go.id</a></span></div>
+      <div class="row"><span class="rl" style="font-size:12px">Tourist Levy</span><span class="rv"><span class="btodo">⚠️ TODO</span></span></div>
+      <div class="row"><span class="rl" style="font-size:12px">Customs form</span><span class="rv"><button class="cp" onclick="cp('https://allindonesia.imigrasi.go.id/',this)">📋 Copy URL</button></span></div>
+      <div style="font-size:11px;color:var(--tx3);margin-top:4px">Fill within 72 hours of arrival in Indonesia</div>
+    </div>
+
+    <div class="sec"><span class="sec-bar"></span>Airport Transfer · DPS</div>
+    <div class="card">
+      <div class="row"><span class="rl">Cars needed</span><span class="rv">2 cars (max 4 persons/car)</span></div>
+      <div class="row"><span class="rl">Distance to Villa 1</span><span class="rv">20.8 km · ~20 min</span></div>
+      <div class="row"><span class="rl">How to book</span><span class="rv" style="font-size:12px">Book Private Transfers via Airbnb 1 host</span></div>
+    </div>
+
+    <div id="ov-notes"></div>
+  </div>
+
+  <!-- ITINERARY -->
+  <div class="pg" id="pg-it">
+    <div class="day-scroll" id="dayscroll"></div>
+    <div id="daybody"></div>
+    <div id="it-notes"></div>
+  </div>
+
+  <!-- COSTS -->
+  <div class="pg" id="pg-co">
+    <div class="info-box" style="margin-top:12px">
+      <div style="font-size:13px;color:var(--tdd);font-weight:600;line-height:1.5">💡 Cash guide — how much to carry each day.<br>Both villas are pre-paid via Airbnb.</div>
+    </div>
+
+    <div class="sec"><span class="sec-bar"></span>Pre-Trip (per person)</div>
+    <div class="dcost">
+      <div class="cst-row"><div class="clbl">Visa on Arrival</div><div class="cvals"><div class="cinr">~₹2,700</div><div class="cidr">IDR ~5,00,000</div></div></div>
+      <div class="cst-row"><div class="clbl">E-Visa handling charges</div><div class="cvals"><div class="cinr">~₹105</div><div class="cidr">IDR ~19,500</div></div></div>
+      <div class="cst-row"><div class="clbl">Bali Tourist Levy</div><div class="cvals"><div class="cinr">~₹820</div><div class="cidr">IDR ~1,50,000</div></div></div>
+      <div class="ctotal"><span class="ctotal-lbl">Total per person</span><div><div class="ctotal-val">~₹3,625</div><div class="ctotal-idr">IDR ~6,69,500</div></div></div>
+      <div id="cex-pretip"></div>
+      <button class="add-cbtn" onclick="openCostModal('Pre-Trip (per person)','pretip')">＋ Add expense</button>
+    </div>
+
+    <div class="sec"><span class="sec-bar"></span>26 May — Arrival Day</div>
+    <div class="dcost">
+      <div class="cst-row"><div class="clbl">Transfer fare (per car)</div><div class="cvals"><div class="cinr">~₹765</div><div class="cidr">IDR ~1,39,500</div></div></div>
+      <div class="cst-row"><div class="clbl">Airport parking fee (per car)</div><div class="cvals"><div class="cinr">~₹65</div><div class="cidr">IDR ~12,000</div></div></div>
+      <div class="ctotal"><span class="ctotal-lbl">Total · 2 cars</span><div><div class="ctotal-val">~₹1,660</div><div class="ctotal-idr">IDR ~3,03,000</div></div></div>
+      <div id="cex-26may"></div>
+      <button class="add-cbtn" onclick="openCostModal('26 May — Arrival Day','26may')">＋ Add expense</button>
+    </div>
+
+    <div class="sec"><span class="sec-bar"></span>27 May — South Bali (per person)</div>
+    <div class="dcost">
+      <div class="cst-row"><div class="clbl">Pandawa Beach entry</div><div class="cvals"><div class="cinr">~₹80</div><div class="cidr">IDR ~15,000</div></div></div>
+      <div class="cst-row"><div class="clbl">Pandawa Beach parking (shared)</div><div class="cvals"><div class="cinr">~₹27</div><div class="cidr">IDR ~5,000</div></div></div>
+      <div class="cst-row"><div class="clbl">GWK Cultural Park entry</div><div class="cvals"><div class="cinr">~₹680</div><div class="cidr">IDR ~1,25,000</div></div></div>
+      <div class="cst-row"><div class="clbl">Uluwatu Temple entry</div><div class="cvals"><div class="cinr">~₹273</div><div class="cidr">IDR ~50,000</div></div></div>
+      <div class="cst-row"><div class="clbl">Kecak Dance ticket</div><div class="cvals"><div class="cinr">~₹765</div><div class="cidr">IDR ~1,40,000</div></div></div>
+      <div class="cst-row"><div class="clbl">Personal taxi — full day</div><div class="cvals"><div class="cinr tbd">TBD</div><div class="cidr">Not in plan</div></div></div>
+      <div class="cst-row"><div class="clbl">Food &amp; drinks</div><div class="cvals"><div class="cinr tbd">TBD</div><div class="cidr">Not in plan</div></div></div>
+      <div class="ctotal"><span class="ctotal-lbl" style="font-size:12px">Known total/person (excl. taxi &amp; food)</span><div><div class="ctotal-val">~₹1,798</div><div class="ctotal-idr">IDR ~3,30,000</div></div></div>
+      <div id="cex-27may"></div>
+      <button class="add-cbtn" onclick="openCostModal('27 May — South Bali','27may')">＋ Add expense</button>
+    </div>
+
+    <div class="sec"><span class="sec-bar"></span>28 May — Nusa Penida Day</div>
+    <div class="dcost">
+      <div class="cst-row"><div class="clbl">Bluuu Tours package (incl. lunch)</div><div class="cvals"><div class="cinr tbd">TBD</div><div class="cidr">Not in plan</div></div></div>
+      <div class="cst-row"><div class="clbl">Dinner out (21:00)</div><div class="cvals"><div class="cinr tbd">TBD</div><div class="cidr">Not in plan</div></div></div>
+      <div id="cex-28may"></div>
+      <button class="add-cbtn" onclick="openCostModal('28 May — Nusa Penida Day','28may')">＋ Add expense</button>
+    </div>
+
+    <div class="sec"><span class="sec-bar"></span>29 May — Villa Transition</div>
+    <div class="dcost">
+      <div class="cst-row"><div class="clbl">Travel: Kuta Utara → Gianyar</div><div class="cvals"><div class="cinr tbd">TBD</div><div class="cidr">Not confirmed</div></div></div>
+      <div id="cex-29may"></div>
+      <button class="add-cbtn" onclick="openCostModal('29 May — Villa Transition','29may')">＋ Add expense</button>
+    </div>
+
+    <div class="sec"><span class="sec-bar"></span>30 May — Free Day</div>
+    <div class="dcost">
+      <div class="cst-row"><div class="clbl">Activities &amp; outings</div><div class="cvals"><div class="cinr tbd">TBD</div><div class="cidr">Not planned</div></div></div>
+      <div id="cex-30may"></div>
+      <button class="add-cbtn" onclick="openCostModal('30 May — Free Day','30may')">＋ Add expense</button>
+    </div>
+
+    <div class="sec"><span class="sec-bar"></span>31 May — Free Day</div>
+    <div class="dcost">
+      <div class="cst-row"><div class="clbl">Activities &amp; outings</div><div class="cvals"><div class="cinr tbd">TBD</div><div class="cidr">Not planned</div></div></div>
+      <div id="cex-31may"></div>
+      <button class="add-cbtn" onclick="openCostModal('31 May — Free Day','31may')">＋ Add expense</button>
+    </div>
+
+    <div class="sec"><span class="sec-bar"></span>1 Jun — Free Day</div>
+    <div class="dcost">
+      <div class="cst-row"><div class="clbl">Activities &amp; outings</div><div class="cvals"><div class="cinr tbd">TBD</div><div class="cidr">Not planned</div></div></div>
+      <div id="cex-1jun"></div>
+      <button class="add-cbtn" onclick="openCostModal('1 Jun — Free Day','1jun')">＋ Add expense</button>
+    </div>
+
+    <div class="sec"><span class="sec-bar"></span>2 Jun — Free Day</div>
+    <div class="dcost">
+      <div class="cst-row"><div class="clbl">Activities &amp; outings</div><div class="cvals"><div class="cinr tbd">TBD</div><div class="cidr">Not planned</div></div></div>
+      <div id="cex-2jun"></div>
+      <button class="add-cbtn" onclick="openCostModal('2 Jun — Free Day','2jun')">＋ Add expense</button>
+    </div>
+
+    <div class="sec"><span class="sec-bar"></span>3 Jun — Departure Day</div>
+    <div class="dcost">
+      <div class="cst-row"><div class="clbl">Transfer fare (per car)</div><div class="cvals"><div class="cinr">~₹765</div><div class="cidr">IDR ~1,39,500</div></div></div>
+      <div class="cst-row"><div class="clbl">Airport parking fee (per car)</div><div class="cvals"><div class="cinr">~₹65</div><div class="cidr">IDR ~12,000</div></div></div>
+      <div class="ctotal"><span class="ctotal-lbl">Total · 2 cars</span><div><div class="ctotal-val">~₹1,660</div><div class="ctotal-idr">IDR ~3,03,000</div></div></div>
+      <div id="cex-3jun"></div>
+      <button class="add-cbtn" onclick="openCostModal('3 Jun — Departure Day','3jun')">＋ Add expense</button>
+    </div>
+
+  </div>
+
+  <!-- CHECKLIST -->
+  <div class="pg" id="pg-td">
+    <div class="card" style="margin-top:12px">
+      <div style="font-size:15px;font-weight:700;color:var(--tx)">Trip Checklist 🌺</div>
+      <div class="prog-meta"><span id="pmeta">0 of 12 tasks done</span><span id="ppct">0%</span></div>
+      <div class="prog-track"><div class="prog-fill" id="pfill" style="width:0%"></div></div>
+    </div>
+    <div id="tdobody"></div>
+  </div>
+
+  <!-- MEDKIT -->
+  <div class="pg" id="pg-med">
+    <div class="info-box" style="margin-top:12px">
+      <div style="font-size:13px;color:var(--tdd);font-weight:600">💊 Medicine kit — tap + to add medicines.</div>
+    </div>
+    <div id="medbody"><div style="text-align:center;padding:40px 0;color:var(--tx3);font-size:14px">No medicines added yet.<br>Tap + to add.</div></div>
+  </div>
+</div>
+
+<button class="fab" onclick="openModal()">+</button>
+
+<div class="modal-bg" id="modal-bg" onclick="closeModalBg(event)">
+  <div class="modal">
+    <div class="modal-title" id="modal-title">Add</div>
+    <div id="modal-body"></div>
+    <button class="mcancel" onclick="closeModal()">Cancel</button>
+  </div>
+</div>
+
+<script>
+var curTab='ov';
+function goTab(name,btn){
+  document.querySelectorAll('.pg').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on');});
+  document.getElementById('pg-'+name).classList.add('on');
+  btn.classList.add('on');
+  curTab=name;
+}
+
+/* COPY — works on iOS Safari (local file), Android Chrome, Desktop */
+function cp(text,btn){
+  var orig=btn.innerHTML;
+  function ok(){btn.innerHTML='✅ Copied!';btn.style.color='#0F6E56';setTimeout(function(){btn.innerHTML=orig;btn.style.color='';},1800);}
+  function fail(){btn.innerHTML='❌ Failed';setTimeout(function(){btn.innerHTML=orig;},1800);}
+  function execFallback(){
+    var ta=document.createElement('textarea');
+    ta.value=text;
+    ta.setAttribute('readonly','');
+    ta.style.cssText='position:fixed;top:0;left:0;width:2em;height:2em;padding:0;border:none;outline:none;box-shadow:none;background:transparent;opacity:0;';
+    document.body.appendChild(ta);
+    if(/ipad|iphone/i.test(navigator.userAgent)){
+      var range=document.createRange();
+      range.selectNodeContents(ta);
+      var sel=window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      ta.setSelectionRange(0,999999);
+    } else {
+      ta.select();
+    }
+    var s=false;
+    try{s=document.execCommand('copy');}catch(e){}
+    document.body.removeChild(ta);
+    s?ok():fail();
+  }
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(ok)['catch'](execFallback);
+  } else {
+    execFallback();
+  }
+}
+
+var daysData=[
+  {label:'25 May ✈️',title:'Departure Day',sub:'Ahmedabad → Singapore',lug:null,items:[
+    {t:'22:50',tx:'Depart Ahmedabad (AMD)',nt:'Singapore Airlines SQ505 · PNR: DUK69D · Booking: BIN-32630488',imp:false}
+  ]},
+  {label:'26 May 🛬',title:'Arrive in Bali!',sub:'Singapore → Denpasar · Check-in Villa Uma Pertiwi',lug:null,items:[
+    {t:'07:10',tx:'Land at Singapore Changi (SIN)',nt:'10h 35m layover — explore Jewel Changi!',imp:false},
+    {t:'17:45',tx:'Depart Singapore → Bali',nt:'',imp:true},
+    {t:'20:25',tx:'Land at Ngurah Rai Airport (DPS)',nt:'Have Tourist Levy receipt + Arrival Card QR Code ready at immigration',imp:true},
+    {t:'21:30',tx:'Private transfer to Villa Uma Pertiwi',nt:'2 cars · max 4 persons/car · 20.8 km · ~20 min from DPS',imp:false},
+    {t:'22:00',tx:'Check-in — Villa Uma Pertiwi by Nakula',nt:'Kerobokan Kelod, Kec. Kuta Utara · 4 rooms · 5 bathrooms',imp:false}
+  ]},
+  {label:'27 May 🏖️',title:'South Bali Day',sub:'Pandawa · GWK · Uluwatu · Kecak Fire Dance',
+   lug:['3 backpacks','Snacks & water bottles','Sunscreen & deodorant','Beach clothes & towels','Sunglasses & swim goggles','Passport & E-Visa','Cash, wallet & power bank','⚠️ Avoid revealing clothes'],
+   items:[
+    {t:'06:00',tx:'Wake up · pack · eat light snacks',nt:'Brunch at Pandawa Beach later',imp:false},
+    {t:'07:30',tx:'Depart from Airbnb 1',nt:'Personal taxi booked for the full day',imp:true},
+    {t:'08:35',tx:'Pandawa Beach',nt:'27 km · ~45 min from Airbnb · Heavy brunch, swim & relax!',imp:false},
+    {t:'13:00',tx:'Leave for GWK Cultural Park',nt:'9 km · ~30 min from Pandawa Beach',imp:false},
+    {t:'13:30',tx:'GWK Cultural Park',nt:'Book tickets online in advance! · Free shuttle buggy to main entrance · Route: Plaza Wisnu → Plaza Garuda → Statue → Asana Artseum → Cafe',imp:false},
+    {t:'15:30',tx:'Leave for Uluwatu Temple',nt:'11.4 km · ~45 min — do not be late!',imp:true},
+    {t:'16:15',tx:'Uluwatu Temple',nt:'Sarongs provided free · Kecak Dance at 18:00 — book via Klook or at Sekaa Tari Kecak Uluwatu counter offline',imp:true},
+    {t:'18:00',tx:'Kecak Fire Dance 🔥',nt:'~1 hour show',imp:false},
+    {t:'19:15',tx:'Return to Airbnb 1',nt:'27 km · 1–1.5 hrs · Order food & beer on the way 🍺',imp:false}
+  ]},
+  {label:'28 May 🤿',title:'Nusa Penida Tour',sub:'Bluuu Tours · Private 12m Speedboat',
+   lug:['3 backpacks','Light snacks only — snorkeling!','1 water bottle','Sunscreen & deodorant','Beach clothes & towels','Sunglasses & swim goggles','Passport & E-Visa','Cash, wallet & power bank'],
+   items:[
+    {t:'05:00',tx:'Wake up · pack · eat light snacks',nt:'Do NOT eat heavy — snorkeling ahead!',imp:false},
+    {t:'06:10',tx:'Leave for shuttle pickup',nt:'3.2 km · ~14 min · Bus leaves 06:40 SHARP! If missed → take Grab/Gojek immediately',imp:true},
+    {t:'06:30',tx:'Reach Seminyak Square Car Park (pickup point)',nt:'Look for Bluuu Tours van — Toyota Hiace',imp:false},
+    {t:'06:40',tx:'Van departs for Bluuu Tours Lounge',nt:'18.4 km · ~40 min',imp:true},
+    {t:'07:20',tx:'Arrive at Bluuu Tours Lounge',nt:'Coffee, tea, beer & pastries included',imp:false},
+    {t:'08:00',tx:'Board private yacht 🛥️',nt:'Private 12m speedboat',imp:false},
+    {t:'09:00',tx:'Snorkeling 🐠',nt:'2 hours — swim goggles ready!',imp:false},
+    {t:'11:00',tx:'Lunch at Amarta Penida',nt:'Included in tour price',imp:false},
+    {t:'13:00',tx:'Visit Kelingking Cliff by car',nt:'2.5 hrs · One of Bali\'s most iconic viewpoints',imp:false},
+    {t:'16:00',tx:'Swim with Manta Rays 🐟',nt:'',imp:false},
+    {t:'18:00',tx:'Return to Airbnb 1',nt:'Taxi back',imp:false},
+    {t:'21:00',tx:'Dinner out 🍽️',nt:'Reserve table in advance (TODO)',imp:false}
+  ]},
+  {label:'29 May 🏡',title:'Villa Transition',sub:'Kuta Utara → Gianyar',lug:null,items:[
+    {t:'Before 12:00',tx:'Check-out Villa Uma Pertiwi',nt:'All luggage packed and rooms cleared',imp:true},
+    {t:'~13:00',tx:'Travel to Villa Tereva',nt:'Singapadu Kaler, Kec. Sukawati, Kabupaten Gianyar',imp:false},
+    {t:'After 15:00',tx:'Check-in Villa Tereva',nt:'Contact: Kd Pramesta Dananjaya · +628977324702 · 4 rooms · 4 bathrooms',imp:false}
+  ]},
+  {label:'30–2 Jun 🌺',title:'Free Days',sub:'Villa Tereva · Explore Gianyar & Ubud region',lug:null,items:[
+    {t:'',tx:'Stay at Villa Tereva, Gianyar',nt:'Activities TBD — nearby: Ubud, Tegallalang Rice Terraces, Sacred Monkey Forest, local markets',imp:false}
+  ]},
+  {label:'3 Jun 🛫',title:'Departure Day',sub:'Fly home to Ahmedabad',lug:null,items:[
+    {t:'Before 11:00',tx:'Check-out Villa Tereva',nt:'All luggage packed · Arrange airport transfer to DPS',imp:true}
+  ]}
+];
+
+function buildDays(){
+  var sc=document.getElementById('dayscroll');
+  daysData.forEach(function(d,i){
+    var b=document.createElement('button');
+    b.className='dbtn'+(i===0?' on':'');
+    b.textContent=d.label;
+    (function(idx){b.onclick=function(){
+      document.querySelectorAll('.dbtn').forEach(function(x){x.classList.remove('on');});
+      b.classList.add('on');renderDay(idx);
+    };})(i);
+    sc.appendChild(b);
+  });
+  renderDay(0);
+}
+
+var itEvents=ls('bali_itevt_v1',{});
+function renderDay(i){
+  var d=daysData[i];
+  var h='<div class="card" style="margin-top:8px"><div style="font-size:16px;font-weight:700;color:var(--tx)">'+d.title+'</div>'+
+    '<div style="font-size:13px;color:var(--tx2);margin-top:2px">'+d.sub+'</div>';
+  if(d.lug){
+    h+='<div class="lug-box"><div class="lug-title">🎒 Pack for today</div><div class="lug-items">'+d.lug.join(' · ')+'</div></div>';
+  }
+  h+='<div class="div"></div><div class="tl">';
+  var allItems=d.items.slice();
+  var userEvts=(itEvents[d.label]||[]);
+  userEvts.forEach(function(e){allItems.push({t:e.t,tx:e.tx,nt:e.nt,imp:e.imp,userAdded:true,origIdx:e.idx});});
+  allItems.sort(function(a,b){
+    if(!a.t&&!b.t)return 0;if(!a.t)return 1;if(!b.t)return -1;
+    return a.t.replace(':','').replace('~','') > b.t.replace(':','').replace('~','') ? 1 : -1;
+  });
+  allItems.forEach(function(item){
+    var dotCls=item.imp?' r':(item.userAdded?' u':'');
+    h+='<div class="tli"><div class="tl-vl"></div><div class="tl-dot'+dotCls+'"></div>';
+    if(item.t) h+='<div class="tl-t">'+item.t+'</div>';
+    h+='<div class="tl-main">'+item.tx+(item.imp?'<span class="imp-tag">⚠️ Important</span>':'')+'</div>';
+    if(item.nt) h+='<div class="tl-note">'+item.nt+'</div>';
+    if(item.userAdded) h+='<button class="del-btn" style="margin-top:4px;font-size:12px" onclick="delItEvent(\''+d.label+'\','+item.origIdx+')">🗑️ Remove</button>';
+    h+='</div>';
+  });
+  h+='</div></div>';
+  document.getElementById('daybody').innerHTML=h;
+  renderItNotes();
+}
+function delItEvent(dayLabel,idx){
+  if(!itEvents[dayLabel])return;
+  itEvents[dayLabel]=itEvents[dayLabel].filter(function(e){return e.idx!==idx;});
+  lsSet('bali_itevt_v1',itEvents);
+  var curDayBtn=document.querySelector('.dbtn.on');
+  if(curDayBtn){var i=Array.from(document.querySelectorAll('.dbtn')).indexOf(curDayBtn);renderDay(i);}
+}
+
+function ls(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch(e){return d;}}
+function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+
+var defaultTodos=[
+  {cat:'Before Trip 🧳',t:'Prepare Medicine Checklist',d:'Antihistamines, antidiarrheals, motion sickness, sunburn relief, bandages'},
+  {cat:'Before Trip 🧳',t:'Activate eSIM — 20–25 GB Telkom plan',d:'Kirtan & Nikhil Kaka both need activation'},
+  {cat:'Before Trip 🧳',t:'Pay Bali Tourist Levy (~₹820 / IDR ~1,50,000 per person)',d:'Required at Bali immigration'},
+  {cat:'Before Trip 🧳',t:'Fill Customs Declaration form (within 72 hrs of arrival)',d:'https://allindonesia.imigrasi.go.id/'},
+  {cat:'Before Trip 🧳',t:'Research SIN Airport activities (10h 35m layover on 26 May)',d:'Jewel Changi waterfall, lounges, transit hotel'},
+  {cat:'Tours & Tickets 🎟️',t:'Send member details to Bluuu Tours (28 May)',d:'Private 12m speedboat · Snorkeling, Kelingking & Manta Rays'},
+  {cat:'Tours & Tickets 🎟️',t:'Book GWK Cultural Park tickets online',d:'~₹680/person (IDR ~1,25,000) · 27 May — book in advance'},
+  {cat:'Tours & Tickets 🎟️',t:'Book Kecak Dance tickets via Klook',d:'~₹765/person (IDR ~1,40,000) · 27 May · 18:00 at Uluwatu'},
+  {cat:'Tours & Tickets 🎟️',t:'Reserve dinner table for 28 May (21:00)',d:'After returning from Nusa Penida tour'},
+  {cat:'Transfers 🚗',t:'Book incoming airport transfer from DPS (2 cars)',d:'~₹830/car (IDR ~1,51,500) · Max 4 persons/car'},
+  {cat:'Transfers 🚗',t:'Book outgoing airport transfer for 3 Jun',d:'Check-out before 11:00 AM'},
+  {cat:'Transfers 🚗',t:'Book personal taxi for 27 May (full South Bali day)',d:'Pandawa Beach → GWK → Uluwatu and back'}
+];
+
+var todos=ls('bali_td_v3',defaultTodos);
+var tdState=ls('bali_st_v3',null);
+if(!tdState||tdState.length!==todos.length) tdState=todos.map(function(){return false;});
+
+function renderTodos(){
+  var done=tdState.filter(Boolean).length,tot=todos.length;
+  document.getElementById('pmeta').textContent=done+' of '+tot+' tasks done';
+  document.getElementById('ppct').textContent=Math.round(done/tot*100)+'%';
+  document.getElementById('pfill').style.width=Math.round(done/tot*100)+'%';
+  var cats=[];
+  todos.forEach(function(t){if(cats.indexOf(t.cat)<0)cats.push(t.cat);});
+  var h='';
+  cats.forEach(function(cat){
+    h+='<div class="tcat">'+cat+'</div><div class="card">';
+    todos.forEach(function(t,i){
+      if(t.cat!==cat)return;
+      h+='<div class="todo-i" onclick="toggleTd('+i+')">'+
+        '<div class="chk'+(tdState[i]?' on':'')+'">'+( tdState[i]?'✓':'' )+'</div>'+
+        '<div style="flex:1"><div class="tt'+(tdState[i]?' dn':'')+'">'+t.t+'</div>'+
+        (t.d?'<div class="td-sub">'+t.d+'</div>':'')+'</div></div>';
+    });
+    h+='</div>';
+  });
+  document.getElementById('tdobody').innerHTML=h;
+}
+function toggleTd(i){tdState[i]=!tdState[i];lsSet('bali_st_v3',tdState);renderTodos();}
+
+var meds=ls('bali_meds_v3',[]);
+function renderMeds(){
+  var el=document.getElementById('medbody');
+  if(!meds.length){el.innerHTML='<div style="text-align:center;padding:40px 0;color:var(--tx3);font-size:14px">No medicines added yet.<br>Tap + to add.</div>';return;}
+  var packed=meds.filter(function(m){return m.packed;}).length;
+  var h='<div style="font-size:12px;color:var(--tx2);margin:8px 0 6px;display:flex;justify-content:space-between"><span>'+packed+' of '+meds.length+' packed</span><span style="color:var(--td);font-weight:600">'+Math.round(packed/meds.length*100)+'%</span></div>'+
+    '<div style="background:#eef0eb;border-radius:99px;height:6px;margin-bottom:10px"><div style="height:6px;border-radius:99px;background:var(--t);width:'+Math.round(packed/meds.length*100)+'%;transition:width .3s"></div></div>'+
+    '<div class="card">';
+  meds.forEach(function(m,i){
+    var bg=m.packed?'background:#f0faf6;':'';
+    h+='<div class="med-row'+(m.packed?' packed':'')+'" style="'+bg+'">'+
+      '<div class="chk'+(m.packed?' on':'')+'" onclick="toggleMed('+i+')" style="cursor:pointer;flex-shrink:0">'+( m.packed?'✓':'' )+'</div>'+
+      '<div style="flex:1"><div class="med-name" style="'+(m.packed?'color:var(--td)':'')+'">'+m.name+'</div>'+
+      '<div class="med-use">'+m.use+'</div></div>'+
+      '<div class="med-right"><span class="med-qty">Qty: '+m.qty+'</span>'+
+      '<button class="del-btn" onclick="delMed('+i+')">🗑️</button></div></div>';
+  });
+  h+='</div>';
+  el.innerHTML=h;
+}
+function toggleMed(i){meds[i].packed=!meds[i].packed;lsSet('bali_meds_v3',meds);renderMeds();}
+function delMed(i){if(confirm('Remove '+meds[i].name+'?')){meds.splice(i,1);lsSet('bali_meds_v3',meds);renderMeds();}}
+
+var ovNotes=ls('bali_ovn_v3',[]);
+function renderOvNotes(){
+  var el=document.getElementById('ov-notes');
+  if(!ovNotes.length){el.innerHTML='';return;}
+  var h='<div class="sec"><span class="sec-bar"></span>My Notes</div>';
+  ovNotes.forEach(function(n,i){
+    h+='<div class="card" style="position:relative;padding-right:40px">'+
+      '<div style="font-size:13px;font-weight:700;color:var(--tx)">'+n.title+'</div>'+
+      '<div style="font-size:12px;color:var(--tx2);margin-top:4px">'+n.body+'</div>'+
+      '<button class="del-btn" style="position:absolute;top:10px;right:10px" onclick="delOvNote('+i+')">🗑️</button></div>';
+  });
+  el.innerHTML=h;
+}
+function delOvNote(i){ovNotes.splice(i,1);lsSet('bali_ovn_v3',ovNotes);renderOvNotes();}
+
+var itNotes=ls('bali_itn_v3',[]);
+function renderItNotes(){
+  var el=document.getElementById('it-notes');
+  if(!itNotes.length){el.innerHTML='';return;}
+  var h='<div class="sec"><span class="sec-bar"></span>My Day Notes</div>';
+  itNotes.forEach(function(n,i){
+    h+='<div class="card" style="position:relative;padding-right:40px">'+
+      '<div style="font-size:11px;font-weight:700;color:var(--td)">'+n.day+'</div>'+
+      (n.title?'<div style="font-size:13px;font-weight:700;color:var(--tx);margin-top:4px">'+n.title+'</div>':'')+
+      (n.body?'<div style="font-size:12px;color:var(--tx2);margin-top:3px">'+n.body+'</div>':'')+
+      '<button class="del-btn" style="position:absolute;top:10px;right:10px" onclick="delItNote('+i+')">🗑️</button></div>';
+  });
+  el.innerHTML=h;
+}
+function delItNote(i){itNotes.splice(i,1);lsSet('bali_itn_v3',itNotes);renderItNotes();}
+
+var coExtras=ls('bali_co_v4',{});
+var costDayIds={'Pre-Trip (per person)':'pretip','26 May — Arrival Day':'26may','27 May — South Bali':'27may','28 May — Nusa Penida Day':'28may','29 May — Villa Transition':'29may','30 May — Free Day':'30may','31 May — Free Day':'31may','1 Jun — Free Day':'1jun','2 Jun — Free Day':'2jun','3 Jun — Departure Day':'3jun'};
+function renderCoExtras(){
+  Object.keys(costDayIds).forEach(function(day){
+    var id=costDayIds[day];
+    var el=document.getElementById('cex-'+id);
+    if(!el)return;
+    var items=coExtras[id]||[];
+    if(!items.length){el.innerHTML='';return;}
+    var h='<div style="border-top:1px solid var(--br);margin-top:8px;padding-top:2px">';
+    items.forEach(function(e,i){
+      h+='<div class="cst-row" style="position:relative;padding-right:28px">'+
+        '<div class="clbl" style="color:var(--tx)">'+e.lbl+'</div>'+
+        '<div class="cvals"><div class="cinr">'+e.inr+'</div><div class="cidr">'+e.idr+'</div></div>'+
+        '<button class="del-btn" style="position:absolute;right:0;top:6px;font-size:15px" onclick="delCoExtra(\''+id+'\','+i+')">🗑️</button></div>';
+    });
+    h+='</div>';
+    el.innerHTML=h;
+  });
+}
+function delCoExtra(id,i){if(!coExtras[id])return;coExtras[id].splice(i,1);lsSet('bali_co_v4',coExtras);renderCoExtras();}
+
+function openModal(){
+  var title=document.getElementById('modal-title');
+  var body=document.getElementById('modal-body');
+  if(curTab==='med'){
+    title.textContent='💊 Add Medicine';
+    body.innerHTML='<input class="minput" id="m-name" placeholder="Medicine name (e.g. Paracetamol)" type="text" autocomplete="off">'+
+      '<input class="minput" id="m-use" placeholder="What it does (e.g. Fever & pain relief)" type="text" autocomplete="off">'+
+      '<input class="minput" id="m-qty" placeholder="Quantity (e.g. 10 tablets)" type="text" autocomplete="off">'+
+      '<button class="mbtn" onclick="saveMed()">Add Medicine</button>';
+  } else if(curTab==='td'){
+    var cats=[];todos.forEach(function(t){if(cats.indexOf(t.cat)<0)cats.push(t.cat);});
+    title.textContent='✅ Add to Checklist';
+    body.innerHTML=
+      '<div style="display:flex;gap:6px;margin-bottom:12px">'+
+        '<button id="td-mode-task" class="mbtn" style="flex:1;background:var(--t)" onclick="tdModeSwitch(\'task\')">Add Task</button>'+
+        '<button id="td-mode-sec" class="mbtn" style="flex:1;background:#ccc;color:#333" onclick="tdModeSwitch(\'sec\')">New Section</button>'+
+      '</div>'+
+      '<div id="td-task-form">'+
+        '<select class="minput" id="td-cat">'+cats.map(function(c){return'<option>'+c+'</option>';}).join('')+'</select>'+
+        '<input class="minput" id="td-t" placeholder="Task description" type="text" autocomplete="off">'+
+        '<input class="minput" id="td-d" placeholder="Detail / note (optional)" type="text" autocomplete="off">'+
+        '<button class="mbtn" onclick="saveTodo()">Add Task</button>'+
+      '</div>'+
+      '<div id="td-sec-form" style="display:none">'+
+        '<input class="minput" id="td-secname" placeholder="Section name (e.g. At Bali 🌴)" type="text" autocomplete="off">'+
+        '<input class="minput" id="td-sec-t" placeholder="First task (required)" type="text" autocomplete="off">'+
+        '<input class="minput" id="td-sec-d" placeholder="Task detail (optional)" type="text" autocomplete="off">'+
+        '<button class="mbtn" onclick="saveSection()">Create Section</button>'+
+      '</div>';
+  } else if(curTab==='co'){
+    openCostModal('','');
+    return;
+  } else if(curTab==='ov'){
+    title.textContent='📝 Add Note';
+    body.innerHTML='<input class="minput" id="ov-t" placeholder="Note title" type="text" autocomplete="off">'+
+      '<textarea class="minput" id="ov-b" placeholder="Note details" rows="3" style="resize:none"></textarea>'+
+      '<button class="mbtn" onclick="saveOvNote()">Add Note</button>';
+  } else if(curTab==='it'){
+    title.textContent='📅 Add to Itinerary';
+    var dayOpts=daysData.map(function(d){return'<option>'+d.label+'</option>';}).join('');
+    body.innerHTML=
+      '<div style="display:flex;gap:6px;margin-bottom:12px">'+
+        '<button id="it-mode-evt" class="mbtn" style="flex:1;background:var(--t)" onclick="itModeSwitch(\'evt\')">Add Event</button>'+
+        '<button id="it-mode-note" class="mbtn" style="flex:1;background:#ccc;color:#333" onclick="itModeSwitch(\'note\')">Add Note</button>'+
+      '</div>'+
+      '<div id="it-evt-form">'+
+        '<select class="minput" id="it-day-evt">'+dayOpts+'</select>'+
+        '<input class="minput" id="it-time" placeholder="Time (e.g. 14:30)" type="text" autocomplete="off">'+
+        '<input class="minput" id="it-title" placeholder="Event title" type="text" autocomplete="off">'+
+        '<input class="minput" id="it-detail" placeholder="Details / notes (optional)" type="text" autocomplete="off">'+
+        '<label style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--tx2);margin-bottom:10px">'+
+          '<input type="checkbox" id="it-imp" style="width:18px;height:18px"> Mark as Important ⚠️</label>'+
+        '<button class="mbtn" onclick="saveItEvent()">Add to Timeline</button>'+
+      '</div>'+
+      '<div id="it-note-form" style="display:none">'+
+        '<select class="minput" id="it-day-note">'+dayOpts+'</select>'+
+        '<input class="minput" id="it-note-t" placeholder="Note title" type="text" autocomplete="off">'+
+        '<textarea class="minput" id="it-note-b" placeholder="Note details" rows="3" style="resize:none"></textarea>'+
+        '<button class="mbtn" onclick="saveItNote()">Add Note</button>'+
+      '</div>';
+  }
+  document.getElementById('modal-bg').classList.add('on');
+}
+function tdModeSwitch(m){
+  document.getElementById('td-task-form').style.display=m==='task'?'block':'none';
+  document.getElementById('td-sec-form').style.display=m==='sec'?'block':'none';
+  document.getElementById('td-mode-task').style.background=m==='task'?'var(--t)':'#ccc';
+  document.getElementById('td-mode-task').style.color=m==='task'?'#fff':'#333';
+  document.getElementById('td-mode-sec').style.background=m==='sec'?'var(--t)':'#ccc';
+  document.getElementById('td-mode-sec').style.color=m==='sec'?'#fff':'#333';
+}
+function itModeSwitch(m){
+  document.getElementById('it-evt-form').style.display=m==='evt'?'block':'none';
+  document.getElementById('it-note-form').style.display=m==='note'?'block':'none';
+  document.getElementById('it-mode-evt').style.background=m==='evt'?'var(--t)':'#ccc';
+  document.getElementById('it-mode-evt').style.color=m==='evt'?'#fff':'#333';
+  document.getElementById('it-mode-note').style.background=m==='note'?'var(--t)':'#ccc';
+  document.getElementById('it-mode-note').style.color=m==='note'?'#fff':'#333';
+}
+var INR_IDR=183;
+var _coTargetId='';
+function openCostModal(day,divId){
+  _coTargetId=divId||'';
+  var opts=Object.keys(costDayIds).map(function(d){return'<option value="'+costDayIds[d]+'"'+(costDayIds[d]===divId?' selected':'')+'>'+d+'</option>';}).join('');
+  document.getElementById('modal-title').textContent='💸 Add Expense';
+  document.getElementById('modal-body').innerHTML=
+    '<select class="minput" id="co-day" onchange="_coTargetId=this.value">'+opts+'</select>'+
+    '<input class="minput" id="co-lbl" placeholder="Expense name" type="text" autocomplete="off">'+
+    '<div style="display:-webkit-flex;display:flex;gap:8px">'+
+      '<div style="flex:1"><div style="font-size:11px;font-weight:600;color:var(--tx2);margin-bottom:4px">₹ INR</div>'+
+      '<input class="minput" id="co-inr" placeholder="e.g. 500" type="number" style="margin-bottom:0" oninput="convInr(this.value)"></div>'+
+      '<div style="flex:1"><div style="font-size:11px;font-weight:600;color:var(--tx2);margin-bottom:4px">IDR</div>'+
+      '<input class="minput" id="co-idr" placeholder="e.g. 91500" type="number" style="margin-bottom:0" oninput="convIdr(this.value)"></div>'+
+    '</div>'+
+    '<div style="font-size:11px;color:var(--tx3);margin:6px 0 10px">Type either — other auto-converts (1 ₹ ≈ 183 IDR)</div>'+
+    '<button class="mbtn" onclick="saveCoExtra()">Add Expense</button>';
+  document.getElementById('modal-bg').classList.add('on');
+}
+function convInr(v){var n=parseFloat(v);if(!isNaN(n)&&n>0)document.getElementById('co-idr').value=Math.round(n*INR_IDR);}
+function convIdr(v){var n=parseFloat(v);if(!isNaN(n)&&n>0)document.getElementById('co-inr').value=Math.round(n/INR_IDR);}
+function closeModal(){document.getElementById('modal-bg').classList.remove('on');}
+function closeModalBg(e){if(e.target===document.getElementById('modal-bg'))closeModal();}
+
+function saveMed(){
+  var n=document.getElementById('m-name').value.trim();
+  if(!n)return;
+  meds.push({name:n,use:document.getElementById('m-use').value.trim()||'—',qty:document.getElementById('m-qty').value.trim()||'—',packed:false});
+  lsSet('bali_meds_v3',meds);renderMeds();closeModal();
+}
+function saveTodo(){
+  var t=document.getElementById('td-t').value.trim();
+  if(!t)return;
+  todos.push({cat:document.getElementById('td-cat').value,t:t,d:document.getElementById('td-d').value.trim()});
+  tdState.push(false);lsSet('bali_td_v3',todos);lsSet('bali_st_v3',tdState);renderTodos();closeModal();
+}
+function saveSection(){
+  var sec=document.getElementById('td-secname').value.trim();
+  var t=document.getElementById('td-sec-t').value.trim();
+  if(!sec||!t)return;
+  todos.push({cat:sec,t:t,d:document.getElementById('td-sec-d').value.trim()});
+  tdState.push(false);lsSet('bali_td_v3',todos);lsSet('bali_st_v3',tdState);renderTodos();closeModal();
+}
+function saveCoExtra(){
+  var l=document.getElementById('co-lbl').value.trim();
+  if(!l)return;
+  var id=document.getElementById('co-day').value||_coTargetId;
+  if(!id)return;
+  var inrRaw=parseFloat(document.getElementById('co-inr').value)||0;
+  var idrRaw=parseFloat(document.getElementById('co-idr').value)||0;
+  if(!coExtras[id])coExtras[id]=[];
+  coExtras[id].push({lbl:l,inr:inrRaw?'₹'+inrRaw.toLocaleString('en-IN'):'—',idr:idrRaw?'IDR '+idrRaw.toLocaleString('en-IN'):'—'});
+  lsSet('bali_co_v4',coExtras);renderCoExtras();closeModal();
+}
+function saveOvNote(){
+  var t=document.getElementById('ov-t').value.trim();
+  if(!t)return;
+  ovNotes.push({title:t,body:document.getElementById('ov-b').value.trim()});
+  lsSet('bali_ovn_v3',ovNotes);renderOvNotes();closeModal();
+}
+function saveItEvent(){
+  var dayLabel=document.getElementById('it-day-evt').value;
+  var tx=document.getElementById('it-title').value.trim();
+  if(!tx)return;
+  if(!itEvents[dayLabel])itEvents[dayLabel]=[];
+  var idx=Date.now();
+  itEvents[dayLabel].push({idx:idx,t:document.getElementById('it-time').value.trim(),tx:tx,nt:document.getElementById('it-detail').value.trim(),imp:document.getElementById('it-imp').checked});
+  lsSet('bali_itevt_v1',itEvents);
+  var btns=document.querySelectorAll('.dbtn');
+  btns.forEach(function(b,i){if(b.textContent===dayLabel){b.click();}});
+  closeModal();
+}
+function saveItNote(){
+  var b=document.getElementById('it-note-b').value.trim();
+  var t=document.getElementById('it-note-t').value.trim();
+  if(!t&&!b)return;
+  itNotes.push({day:document.getElementById('it-day-note').value,title:t,body:b});
+  lsSet('bali_itn_v3',itNotes);renderItNotes();closeModal();
+}
+
+buildDays();renderTodos();renderMeds();renderOvNotes();renderItNotes();renderCoExtras();
+</script>
+</body>
+</html>
